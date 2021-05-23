@@ -1,8 +1,10 @@
 import io
 import mimetypes
 import os
+import traceback
 
 from PIL import Image
+from mutagen import MutagenError
 from mutagen.flac import FLAC, Picture
 from mutagen.id3 import ID3, APIC, TIT2, TPE1, TALB, ID3NoHeaderError
 from mutagen.mp4 import MP4, MP4Cover
@@ -52,8 +54,8 @@ def Utils_Meta_setMusicInfo(path, info):
                 id3.add(
                     APIC(encoding=0, mime=mimetypes.guess_type(info["APIC"])[0], type=6, data=f.read()))
         id3.save()
-    except ID3NoHeaderError as e:
-        print(e)
+    except ID3NoHeaderError:
+        traceback.print_exc()
         ext = os.path.splitext(path)[1]
         if ".flac" in ext or ".FLAC" in ext:
             flac = FLAC(path)
@@ -81,7 +83,9 @@ def Utils_Meta_setMusicInfo(path, info):
                 with open(info["APIC"], "rb") as f:
                     mp4["covr"] = [MP4Cover(f.read(), imageformat=MP4Cover.FORMAT_PNG)]
                 mp4.save()
-            except Exception as ee:
-                print(ee)
+            except Exception:
+                traceback.print_exc()
         if info["TRANSCODE"]:
             Utils_FormatTools.Utils_Format_autoTranscode(path, info["TRANSPATH"])
+    except MutagenError:
+        traceback.print_exc()
