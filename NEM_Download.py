@@ -100,6 +100,7 @@ def _download_fromSoupInfos(infos):
                                           .replace("%sourcePath", os.path.splitext(info["download_path"])[0] + ".mp3"))
             }) == 1:
                 shutil.move(file_tmp_path, os.path.splitext(file_path)[0] + ".m4a")
+                os.remove(cover_path)
             else:
                 try:
                     os.remove(cover_path)
