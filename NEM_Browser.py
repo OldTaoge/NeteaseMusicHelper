@@ -24,10 +24,15 @@ def Browser_Request(end_point, data, update_cookies=False):
                 return request_o.json()
             except Exception:
                 traceback.print_exc()
+                print(request_o.content)
 
 
 def Browser_Download(url, path):
-    req = requests.get(url)
+    for times in range(0, 5):
+        try:
+            req = requests.get(url)
+        except Exception:
+            traceback.print_exc()
     print("Succeed to do download :" + os.path.split(url)[1])
     with open(path, 'wb') as fd:
         for chunk in req.iter_content(4096):
