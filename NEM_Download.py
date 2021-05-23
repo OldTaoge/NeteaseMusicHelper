@@ -1,6 +1,7 @@
 import os.path
 import re
 import shutil
+import traceback
 
 import NEM_Browser
 import NEM_Data
@@ -8,7 +9,7 @@ import NEM_Track
 
 from Utils import Utils_MetaTools
 
-
+7
 def Download_fromTrackDetails(details, template_info):
     """
 
@@ -98,8 +99,11 @@ def _download_fromSoupInfos(infos):
                                           .replace("%seg", os.path.sep)
                                           .replace("%sourcePath", os.path.splitext(file_path)[0] + ".mp3"))
             })
-            shutil.move(file_tmp_path, file_path)
-            os.remove(cover_path)
+            try:
+                shutil.move(file_tmp_path, file_path)
+                os.remove(cover_path)
+            except Exception:
+                traceback.print_exc()
     os.rmdir(tmp_path)
 
 
