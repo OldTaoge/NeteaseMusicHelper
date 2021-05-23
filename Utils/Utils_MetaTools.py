@@ -1,6 +1,7 @@
 import io
 import mimetypes
 import os
+import shutil
 import traceback
 
 from PIL import Image
@@ -83,6 +84,7 @@ def Utils_Meta_setMusicInfo(path, info):
                 with open(info["APIC"], "rb") as f:
                     mp4["covr"] = [MP4Cover(f.read(), imageformat=MP4Cover.FORMAT_PNG)]
                 mp4.save()
+                shutil.move(path, os.path.splitext(path)[0] + ".m4a")
             except Exception:
                 traceback.print_exc()
         if info["TRANSCODE"]:
