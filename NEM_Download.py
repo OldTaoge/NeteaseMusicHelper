@@ -88,7 +88,7 @@ def _download_fromSoupInfos(infos):
             cover_path = file_tmp_path + os.path.splitext(info['album_cover_url'])[-1]
             NEM_Browser.Browser_Download(info["url"], file_tmp_path)
             NEM_Browser.Browser_Download(info['album_cover_url'], cover_path)
-            Utils_MetaTools.Utils_Meta_setMusicInfo(file_tmp_path, {
+            if Utils_MetaTools.Utils_Meta_setMusicInfo(file_tmp_path, {
                 "TALB": info['album_name'],
                 "TIT2": info['name'],
                 "TPE1": info['artist'],
@@ -98,12 +98,14 @@ def _download_fromSoupInfos(infos):
                 "TRANSPATH": os.path.join(download_path, global_data["config"]["nameTemplate"]["convertedPath"]
                                           .replace("%seg", os.path.sep)
                                           .replace("%sourcePath", os.path.splitext(info["download_path"])[0] + ".mp3"))
-            })
-            try:
-                shutil.move(file_tmp_path, file_path)
-                os.remove(cover_path)
-            except Exception:
-                traceback.print_exc()
+            }) == 1:
+                shutil.move(file_tmp_path, os.path.splitext(file_path)[0] + ".m4a")
+            else:
+                try:
+                    os.remove(cover_path)
+                    shutil.move(file_tmp_path, file_path)
+                except Exception:
+                    traceback.print_exc()
     os.rmdir(tmp_path)
 
 

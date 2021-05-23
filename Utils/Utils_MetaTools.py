@@ -27,8 +27,12 @@ def Utils_Meta_setMusicInfo(path, info):
         "TRANSCODE": Boolean:convert to mp3,
         "TRANSPATH": "Path to converted file"
     }
-    :return: None
+    :return: int {
+        0: Nothing need done
+        1: Need reExt
+    }
     """
+    status_code = 0
     try:
         id3 = ID3(path)
         id3.update_to_v23()
@@ -45,9 +49,11 @@ def Utils_Meta_setMusicInfo(path, info):
             img_bytes = io.BytesIO()
 
             if image.size[0] > image.size[1]:
-                image = image.crop((int((image.size[0]-image.size[1])/2), 0, int((image.size[0]+image.size[1])/2), image.size[1]))
+                image = image.crop((int((image.size[0] - image.size[1]) / 2), 0,
+                                    int((image.size[0] + image.size[1]) / 2), image.size[1]))
             elif image.size[0] < image.size[1]:
-                image = image.crop((0, int((image.size[1]-image.size[0])/2), 0, int((image.size[0]+image.size[1])/2)))
+                image = image.crop(
+                    (0, int((image.size[1] - image.size[0]) / 2), 0, int((image.size[0] + image.size[1]) / 2)))
             image.resize((300, 300)).save(img_bytes, format="JPEG")
             id3.add(APIC(encoding=0, mime=mimetypes.guess_type(info["APIC"])[0], type=6, data=img_bytes.getvalue()))
         else:
@@ -84,7 +90,7 @@ def Utils_Meta_setMusicInfo(path, info):
                 with open(info["APIC"], "rb") as f:
                     mp4["covr"] = [MP4Cover(f.read(), imageformat=MP4Cover.FORMAT_PNG)]
                 mp4.save()
-                shutil.move(path, os.path.splitext(path)[0] + ".m4a")
+                status_code = 1
             except Exception:
                 traceback.print_exc()
         if info["TRANSCODE"]:
@@ -93,3 +99,4 @@ def Utils_Meta_setMusicInfo(path, info):
             Utils_FormatTools.Utils_Format_autoTranscode(path, info["TRANSPATH"])
     except MutagenError:
         traceback.print_exc()
+    return status_code
