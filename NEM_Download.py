@@ -97,7 +97,7 @@ def _download_fromSoupInfos(infos):
                 "TRANSCODE": global_data["config"]["output"]["transcodeToMP3"],
                 "TRANSPATH": os.path.join(download_path, global_data["config"]["nameTemplate"]["convertedPath"]
                                           .replace("%seg", os.path.sep)
-                                          .replace("%sourcePath", os.path.splitext(file_path)[0] + ".mp3"))
+                                          .replace("%sourcePath", os.path.splitext(info["download_path"])[0] + ".mp3"))
             })
             try:
                 shutil.move(file_tmp_path, file_path)
