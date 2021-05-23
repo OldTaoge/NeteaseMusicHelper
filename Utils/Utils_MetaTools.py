@@ -2,13 +2,12 @@ import io
 import mimetypes
 import os
 
-import Utils_FormatTools
-
-# import io
 from PIL import Image
 from mutagen.flac import FLAC, Picture
 from mutagen.id3 import ID3, APIC, TIT2, TPE1, TALB, ID3NoHeaderError
 from mutagen.mp4 import MP4, MP4Cover
+
+from Utils import Utils_FormatTools
 
 
 def Utils_Meta_setMusicInfo(path, info):
