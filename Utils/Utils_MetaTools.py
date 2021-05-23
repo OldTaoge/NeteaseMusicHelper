@@ -97,6 +97,8 @@ def Utils_Meta_setMusicInfo(path, info):
             if not os.path.exists(os.path.split(info["TRANSPATH"])[0]):
                 os.makedirs(os.path.split(info["TRANSPATH"])[0])
             Utils_FormatTools.Utils_Format_autoTranscode(path, info["TRANSPATH"])
+            info["TRANSCODE"] = False
+            Utils_Meta_setMusicInfo(info["TRANSPATH"], info)
     except MutagenError:
         traceback.print_exc()
     return status_code
