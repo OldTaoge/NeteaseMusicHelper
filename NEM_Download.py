@@ -44,7 +44,7 @@ def Download_fromTrackDetails(details, template_info):
             track_name = detail["name"]
         soup_info[id] = {
             "name": track_name,
-            "artist": artist_name.replace("/", ","),
+            "artist": artist_name,
             "album_name": detail["al"]["name"],
             "album_cover_url": detail["al"]["picUrl"]
         }
