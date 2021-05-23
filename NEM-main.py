@@ -1,5 +1,5 @@
 import NEM_Action
-import NEM_Auturun
+import NEM_Autorun
 import NEM_Browser
 import NEM_Data
 import NEM_Env
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     # id = NEM_Action.Action_radar_to_pl()
     # NEM_Action.Action_downloadPlaylist(id, is_radar=True)
     print("Init successfully")
-    NEM_Auturun.Autorun()
+    NEM_Autorun.Autorun()

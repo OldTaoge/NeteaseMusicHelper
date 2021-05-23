@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  nem-h:
+    image: oldtaoge/netease_music_helper
+    container_name: netease_music_helper
+    volumes:
+      - data.json:/usr/src/app/data.json
+      - NEM_Autorun.py:/usr/src/app/NEM_Autorun.py
+      - /path/to/music/on/host:/music
+    restart: "no"
+
+volumes:
+  nfs-example:
+    driver_opts:
+      type: "nfs"
+      o: "addr=nas.oldtaoge.space,soft,rw,vers=4"
+      device: ":/volume1/music"
