@@ -2,6 +2,8 @@ import io
 import mimetypes
 import os
 
+import Utils_FormatTools
+
 # import io
 from PIL import Image
 from mutagen.flac import FLAC, Picture
@@ -19,7 +21,9 @@ def Utils_Meta_setMusicInfo(path, info):
         "TIT2": "Title",
         "TPE1": "Author,Separate with '/'",
         "APIC": "Path to cover photo",
-        "STRICT": Boolean:strict cover mode
+        "STRICT": Boolean:strict cover mode,
+        "TRANSCODE": Boolean:convert to mp3,
+        "TRANSPATH": "Path to converted file"
     }
     :return: None
     """
@@ -80,3 +84,5 @@ def Utils_Meta_setMusicInfo(path, info):
                 mp4.save()
             except Exception as ee:
                 print(ee)
+        if info["TRANSCODE"]:
+            Utils_FormatTools.Utils_Format_autoTranscode(path, info["TRANSPATH"])

@@ -92,7 +92,11 @@ def _download_fromSoupInfos(infos):
                 "TIT2": info['name'],
                 "TPE1": info['artist'],
                 "APIC": cover_path,
-                "STRICT": global_data["config"]["output"]["strictCover"]
+                "STRICT": global_data["config"]["output"]["strictCover"],
+                "TRANSCODE": global_data["config"]["output"]["transcodeToMP3"],
+                "TRANSPATH": os.path.join(download_path, global_data["config"]["nameTemplate"]["convertedPath"]
+                                          .replace("%seg", os.path.sep)
+                                          .replace("%sourcePath", os.path.splitext(file_path)[0] + ".mp3"))
             })
             shutil.move(file_tmp_path, file_path)
             os.remove(cover_path)

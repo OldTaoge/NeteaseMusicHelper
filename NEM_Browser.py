@@ -31,12 +31,13 @@ def Browser_Download(url, path):
     for times in range(0, 5):
         try:
             req = requests.get(url)
+            with open(path, 'wb') as fd:
+                for chunk in req.iter_content(4096):
+                    fd.write(chunk)
+            return
         except Exception:
             traceback.print_exc()
     print("Succeed to do download :" + os.path.split(url)[1])
-    with open(path, 'wb') as fd:
-        for chunk in req.iter_content(4096):
-            fd.write(chunk)
 
 
 def Browser_CheckLogin():

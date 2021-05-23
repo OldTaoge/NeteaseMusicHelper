@@ -3,14 +3,16 @@
         "nameTemplate": {
             "favouriteMusic": "Fav%seg%trackName - %artistName%suffix",
             "radar": "Radar%seg%playlistName%seg%trackName - %artistName%suffix",
-            "playList": "%playlistName%seg%trackName - %artistName%suffix"
+            "playList": "%playlistName%seg%trackName - %artistName%suffix",
+            "convertedPath": "Cov%seg%sourcePath"
         },
         "download": {
             "path": "download",
             "tempPath": "tmp"
         },
         "output": {
-            "strictCover": false
+            "strictCover": false,
+            "transcodeToMP3": true
         },
         "config": {
             "write": false
