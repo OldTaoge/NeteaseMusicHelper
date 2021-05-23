@@ -1,0 +1,48 @@
+{
+    "config": {
+        "nameTemplate": {
+            "favouriteMusic": "Fav%seg%trackName - %artistName%suffix",
+            "radar": "Radar%seg%playlistName%seg%trackName - %artistName%suffix",
+            "playList": "%playlistName%seg%trackName - %artistName%suffix"
+        },
+        "download": {
+            "path": "download",
+            "tempPath": "tmp"
+        },
+        "output": {
+            "strictCover": false
+        },
+        "config": {
+            "write": false
+        }
+    },
+    "user": {
+        "id": "",
+        "loginCookies": {
+            "MUSIC_U": "",
+            "NMTID": "",
+            "__csrf": "",
+            "__remember_me": ""
+        },
+        "loginInfo": {
+            "phone": null,
+            "email": null,
+            "md5_pass": null
+        }
+    },
+    "api": {
+        "prefix": "https://nemapi.oldtaoge.space:21286",
+        "paths": {
+            "signin": "/daily_signin",
+            "yunbeiSign": "/yunbei/sign",
+            "loginPhone": "/login/cellphone",
+            "loginEmail": "/login",
+            "userPlayList": "/user/playlist",
+            "playlistDetail": "/playlist/detail",
+            "playlistCreate": "/playlist/create",
+            "playlistAdd": "/playlist/tracks",
+            "trackGetURL": "/song/url",
+            "trackGetDetail": "/song/detail"
+        }
+    }
+}
