@@ -31,3 +31,7 @@ def Playlist_getPlaylistAdd(playlist_id, tracks):
     return NEM_Browser.Browser_Request("playlistAdd", {"op": "add",
                                                        "pid": playlist_id,
                                                        "tracks": tracks})
+
+
+def Playlist_getRecommendSongs():
+    return NEM_Browser.Browser_Request("recommendSong", None)["data"]["dailySongs"]

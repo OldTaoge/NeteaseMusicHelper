@@ -4,6 +4,7 @@
             "favouriteMusic": "Fav%seg%trackName - %artistName%suffix",
             "radar": "Radar%seg%playlistName%seg%trackName - %artistName%suffix",
             "playList": "%playlistName%seg%trackName - %artistName%suffix",
+            "recommend": "Recommend%seg%playlistName%seg%trackName - %artistName%suffix",
             "convertedPath": "Cov%seg%sourcePath"
         },
         "download": {
@@ -43,6 +44,7 @@
             "playlistDetail": "/playlist/detail",
             "playlistCreate": "/playlist/create",
             "playlistAdd": "/playlist/tracks",
+            "recommendSong": "/recommend/songs",
             "trackGetURL": "/song/url",
             "trackGetDetail": "/song/detail"
         }

@@ -24,5 +24,7 @@ if __name__ == "__main__":
     # NEM_Action.Action_downloadFavourite()
     # id = NEM_Action.Action_radar_to_pl()
     # NEM_Action.Action_downloadPlaylist(id, is_radar=True)
+    # id = NEM_Action.Action_eecommendToPlaylist()
+    # NEM_Action.Action_downloadPlaylist(id, is_recommend=True)
     print("Init successfully")
     NEM_Autorun.Autorun()
