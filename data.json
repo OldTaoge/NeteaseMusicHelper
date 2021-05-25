@@ -7,6 +7,10 @@
             "recommend": "Recommend%seg%playlistName%seg%trackName - %artistName%suffix",
             "convertedPath": "Cov%seg%sourcePath"
         },
+        "dailyNameTemplate": {
+            "recommend": "R%y.%m.%d",
+            "radar": "T%y.%m.%d"
+        },
         "download": {
             "path": "download",
             "tempPath": "tmp"

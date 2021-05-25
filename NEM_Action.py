@@ -1,14 +1,17 @@
 import time
 
+import NEM_Data
 import NEM_Playlist
 import NEM_Download
 
 
 def Action_radar_to_pl():
+    global_data = NEM_Data.Data_getData()
     radar_pl = NEM_Playlist.Playlist_getPlaylistDetail(3136952023)
     tracks_list = radar_pl["playlist"]["tracks"]
     track_id_str = _Action_TrackListToStr(tracks_list)
-    npl = NEM_Playlist.Playlist_getPlaylistCreate(time.strftime("T%y.%m.%d", time.localtime()))
+    npl = NEM_Playlist.Playlist_getPlaylistCreate(time.strftime(global_data["config"]["dailyNameTemplate"]["radar"],
+                                                                time.localtime()))
     NEM_Playlist.Playlist_getPlaylistAdd(npl["playlist"]["id"], track_id_str)
     return npl["playlist"]["id"]
 
@@ -33,9 +36,11 @@ def Action_downloadFavourite():
     Action_downloadPlaylist(NEM_Playlist.Playlist_getUserFavourite()["id"], is_favourite=True)
 
 
-def Action_eecommendToPlaylist():
+def Action_recommendToPlaylist():
+    global_data = NEM_Data.Data_getData()
     track_id_str = _Action_TrackListToStr(NEM_Playlist.Playlist_getRecommendSongs())
-    npl = NEM_Playlist.Playlist_getPlaylistCreate(time.strftime("R%y.%m.%d", time.localtime()))
+    npl = NEM_Playlist.Playlist_getPlaylistCreate(time.strftime(global_data["config"]["dailyNameTemplate"]["recommend"],
+                                                                time.localtime()))
     NEM_Playlist.Playlist_getPlaylistAdd(npl["playlist"]["id"], track_id_str)
     return npl["playlist"]["id"]
 
