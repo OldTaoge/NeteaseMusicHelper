@@ -9,7 +9,7 @@ import NEM_Track
 
 from Utils import Utils_MetaTools
 
-7
+
 def Download_fromTrackDetails(details, template_info):
     """
 
@@ -107,7 +107,7 @@ def _download_fromSoupInfos(infos):
                     shutil.move(file_tmp_path, file_path)
                 except Exception:
                     traceback.print_exc()
-    os.rmdir(tmp_path)
+    # os.rmdir(tmp_path)
 
 
 def _download_render(soup_info, template_info):
