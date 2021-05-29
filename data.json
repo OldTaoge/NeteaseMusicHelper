@@ -52,5 +52,8 @@
             "trackGetURL": "/song/url",
             "trackGetDetail": "/song/detail"
         }
+    },
+    "data": {
+        "radarIdHash": []
     }
 }
