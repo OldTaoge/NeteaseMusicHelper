@@ -13,6 +13,7 @@ def Action_radar_to_pl():
     if track_id_str in global_data["data"]["radarIdHash"]:
         return -1
     global_data["data"]["radarIdHash"].append(track_id_str)
+    NEM_Data.Data_saveData()
     npl = NEM_Playlist.Playlist_getPlaylistCreate(time.strftime(global_data["config"]["dailyNameTemplate"]["radar"],
                                                                 time.localtime()))
     NEM_Playlist.Playlist_getPlaylistAdd(npl["playlist"]["id"], track_id_str)
