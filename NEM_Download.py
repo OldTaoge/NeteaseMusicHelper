@@ -34,7 +34,7 @@ def Download_fromTrackDetails(details, template_info):
             ids = ""
         artist_name = ""
         for artist in detail["ar"]:
-            if len(artist["tns"]) > 0:
+            if "tns" in artist.keys() and len(artist["tns"]) > 0:
                 artist_name += artist["name"] + " (" + artist["tns"][0] + ")/"
             else:
                 artist_name += artist["name"] + "/"

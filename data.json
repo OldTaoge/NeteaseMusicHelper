@@ -50,7 +50,10 @@
             "playlistAdd": "/playlist/tracks",
             "recommendSong": "/recommend/songs",
             "trackGetURL": "/song/url",
-            "trackGetDetail": "/song/detail"
+            "trackGetDetail": "/song/detail",
+            "artistSongs": "/artist/songs",
+            "artistDetail": "/artist/detail",
+            "albumDetail": "/album"
         }
     },
     "data": {
