@@ -24,7 +24,9 @@ def Browser_Request(end_point, data, update_cookies=False):
                 return request_o.json()
             except Exception:
                 traceback.print_exc()
+                print(end_point)
                 print(request_o.content)
+
 
 
 def Browser_Download(url, path):

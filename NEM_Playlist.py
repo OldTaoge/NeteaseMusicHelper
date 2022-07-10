@@ -16,10 +16,22 @@ def Playlist_getUserFavourite():
 def Playlist_getPlaylistDetail(playlist_id):
     playlist_o = NEM_Browser.Browser_Request("playlistDetail", {"id": playlist_id})
     ids_str = ""
-    for tracker_id_o in playlist_o["playlist"]["trackIds"]:
-        ids_str += str(tracker_id_o["id"]) + ","
-    ids_str = ids_str[0:-1]
-    playlist_o["playlist"]["tracks"] = NEM_Track.Track_getSongDetails(ids_str)["songs"]
+    tracks = playlist_o["playlist"]["trackIds"]
+    playlist_o["playlist"]["tracks"] = []
+    len_per_req = 512
+    if len(tracks) >= len_per_req:
+        parts = int(len(tracks) / len_per_req)
+        for i in range(parts):
+            for tracker_id_o in tracks[len_per_req*i:len_per_req+len_per_req*i]:
+                ids_str += str(tracker_id_o["id"]) + ","
+            ids_str = ids_str[0:-1]
+            playlist_o["playlist"]["tracks"] += NEM_Track.Track_getSongDetails(ids_str)["songs"]
+            ids_str = ""
+    else:
+        for tracker_id_o in playlist_o["playlist"]["trackIds"]:
+            ids_str += str(tracker_id_o["id"]) + ","
+        ids_str = ids_str[0:-1]
+        playlist_o["playlist"]["tracks"] = NEM_Track.Track_getSongDetails(ids_str)["songs"]
     return playlist_o
 
 
